@@ -1,0 +1,8 @@
+.DS_Store
+*.out
+work/
+results/
+*.img
+.nextflow*
+.Rhistory
+results_summary/pipeline_info/execution_report.html
