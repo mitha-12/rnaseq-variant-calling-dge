@@ -22,6 +22,8 @@ samples <- read.csv(samples_file)
 rownames(samples) <- samples$sample_id
 
 samples <- samples[colnames(count_matrix), ]
+# set reference level
+samples$condition <- relevel(factor(samples$condition), ref = "old")
 
 # DESeq2
 dds <- DESeqDataSetFromMatrix(
@@ -31,7 +33,7 @@ dds <- DESeqDataSetFromMatrix(
 )
 
 dds <- DESeq(dds)
-res <- results(dds)
+res <- results(dds, alpha = 0.05)
 res_ordered <- res[order(res$padj), ]
 
 # Output
